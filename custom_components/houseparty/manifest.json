@@ -1,13 +1,13 @@
 {
   "domain": "houseparty",
   "name": "HouseParty",
-  "version": "0.1.0",
+  "codeowners": ["@Foulmerchant"],
   "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/Foulmerchant/houseparty",
   "integration_type": "helper",
   "iot_class": "calculated",
-  "documentation": "https://github.com/Foulmerchant/houseparty",
   "issue_tracker": "https://github.com/Foulmerchant/houseparty/issues",
-  "codeowners": ["@Foulmerchant"],
   "requirements": [],
-  "dependencies": []
+  "version": "0.1.0"
 }
