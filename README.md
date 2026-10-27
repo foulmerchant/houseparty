@@ -1,5 +1,7 @@
 # HouseParty
 
+> **DO NOT USE — IN TESTING.** Experimental code only. Do not rely on this integration for safety, security, or property protection.
+
 A self-contained alarm system for Home Assistant: an integration that *is* the alarm, and a card to run it.
 
 > **Status: HA test candidate.** All 38 Python tests and 30 Rust core tests pass. Strict Rust linting, WASM release compilation, TypeScript checks, and npm vulnerability audits pass. Home Assistant wiring and the card still require runtime testing in a real HA instance; do not use this as your only alarm yet.
