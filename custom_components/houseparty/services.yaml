@@ -1,0 +1,24 @@
+arm:
+  target:
+    entity:
+      integration: houseparty
+      domain: alarm_control_panel
+  fields:
+    mode:
+      required: true
+      selector:
+        select:
+          options: [away, home, night, vacation, custom]
+    code:
+      selector:
+        text:
+          type: password
+    force:
+      default: false
+      selector:
+        boolean:
+    bypass:
+      selector:
+        entity:
+          domain: binary_sensor
+          multiple: true

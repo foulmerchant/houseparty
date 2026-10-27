@@ -1,0 +1,165 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up HouseParty",
+        "description": "Name this alarm and create the first user. Codes are 6 to 12 digits.",
+        "data": {
+          "name": "Alarm name",
+          "user_name": "Your name",
+          "code": "Code",
+          "code_confirm": "Confirm code"
+        }
+      }
+    },
+    "error": {
+      "invalid_code_format": "Codes must be 6 to 12 digits.",
+      "codes_differ": "The codes don't match."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "HouseParty",
+        "menu_options": {
+          "modes": "Modes and delays",
+          "sensors": "Sensors",
+          "sensor_roles": "Sensor behavior",
+          "add_user": "Add a user",
+          "remove_user": "Remove a user"
+        }
+      },
+      "modes": {
+        "title": "Modes and delays",
+        "data": {
+          "code_arm_required": "Require a code to arm",
+          "disarm_after_trigger": "Disarm when the alarm time ends (instead of re-arming)",
+          "away_enabled": "Away: enabled",
+          "away_exit_delay": "Away: exit delay",
+          "away_entry_delay": "Away: entry delay",
+          "away_trigger_time": "Away: alarm time (0 = until disarmed)",
+          "home_enabled": "Home: enabled",
+          "home_exit_delay": "Home: exit delay",
+          "home_entry_delay": "Home: entry delay",
+          "home_trigger_time": "Home: alarm time (0 = until disarmed)",
+          "night_enabled": "Night: enabled",
+          "night_exit_delay": "Night: exit delay",
+          "night_entry_delay": "Night: entry delay",
+          "night_trigger_time": "Night: alarm time (0 = until disarmed)",
+          "vacation_enabled": "Vacation: enabled",
+          "vacation_exit_delay": "Vacation: exit delay",
+          "vacation_entry_delay": "Vacation: entry delay",
+          "vacation_trigger_time": "Vacation: alarm time (0 = until disarmed)",
+          "custom_enabled": "Custom: enabled",
+          "custom_exit_delay": "Custom: exit delay",
+          "custom_entry_delay": "Custom: entry delay",
+          "custom_trigger_time": "Custom: alarm time (0 = until disarmed)"
+        }
+      },
+      "sensors": {
+        "title": "Sensors",
+        "description": "Choose which sensors protect each mode. A sensor that isn't closed blocks arming, unless allowed below.",
+        "data": {
+          "away_sensors": "Sensors active in Away",
+          "home_sensors": "Sensors active in Home",
+          "night_sensors": "Sensors active in Night",
+          "vacation_sensors": "Sensors active in Vacation",
+          "custom_sensors": "Sensors active in Custom",
+          "always_on_sensors": "Always-on sensors (tamper, smoke, water: trigger even when disarmed)"
+        }
+      },
+      "sensor_roles": {
+        "title": "Sensor behavior",
+        "data": {
+          "immediate_sensors": "Trigger immediately (no entry delay)",
+          "allow_open_sensors": "May be open when arming (e.g. motion)",
+          "no_exit_delay_sensors": "Trigger during the exit delay (not on your way out)",
+          "trigger_unavailable_sensors": "Trigger if the sensor goes offline while armed"
+        }
+      },
+      "add_user": {
+        "title": "Add a user",
+        "description": "Each code must be unique. A duress code disarms normally but fires a houseparty_duress event your automations can act on.",
+        "data": {
+          "name": "Name",
+          "code": "Code",
+          "code_confirm": "Confirm code",
+          "can_arm": "Modes this user can arm",
+          "can_disarm": "Can disarm",
+          "duress": "This is a duress code"
+        }
+      },
+      "remove_user": {
+        "title": "Remove a user",
+        "data": {
+          "user": "User"
+        }
+      }
+    },
+    "error": {
+      "invalid_code_format": "Codes must be 6 to 12 digits.",
+      "codes_differ": "The codes don't match.",
+      "code_in_use": "Another user already has this code.",
+      "user_limit": "HouseParty supports at most 10 users per alarm.",
+      "last_disarmer": "At least one non-duress user must be able to disarm."
+    },
+    "abort": {
+      "no_sensors": "Add sensors first."
+    }
+  },
+  "selector": {
+    "mode": {
+      "options": {
+        "away": "Away",
+        "home": "Home",
+        "night": "Night",
+        "vacation": "Vacation",
+        "custom": "Custom"
+      }
+    }
+  },
+  "exceptions": {
+    "auth_unavailable": {
+      "message": "Alarm codes are unavailable. Repair the HouseParty user store before operating the alarm."
+    },
+    "invalid_code": {
+      "message": "Wrong code."
+    },
+    "locked_out": {
+      "message": "Too many wrong codes. Try again in {seconds}s."
+    },
+    "not_allowed": {
+      "message": "This code isn't allowed to do that."
+    },
+    "mode_disabled": {
+      "message": "That mode isn't enabled."
+    },
+    "invalid_state": {
+      "message": "The alarm can't do that right now."
+    }
+  },
+  "services": {
+    "arm": {
+      "name": "Arm",
+      "description": "Arm a HouseParty alarm, optionally force-arming past open sensors.",
+      "fields": {
+        "mode": {
+          "name": "Mode",
+          "description": "away, home, night, vacation or custom."
+        },
+        "code": {
+          "name": "Code",
+          "description": "User code."
+        },
+        "force": {
+          "name": "Force",
+          "description": "Arm even if sensors are open, bypassing them until disarmed."
+        },
+        "bypass": {
+          "name": "Bypass",
+          "description": "The sensors you approve bypassing. If anything else is open, arming is refused."
+        }
+      }
+    }
+  }
+}
