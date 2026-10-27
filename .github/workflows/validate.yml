@@ -18,6 +18,8 @@ jobs:
       - run: python -m compileall -q custom_components/houseparty tests
       - run: python -m unittest discover -s tests -v
       - uses: home-assistant/actions/hassfest@86d4564712fa02543c808e3a693dd04f9d3f8361
-      - uses: hacs/action@1ebf01c408f29afcb6406bd431bc98fd8cbb15aa
+      # The HACS action only supports public repos; local layout checks still run.
+      - if: ${{ !github.event.repository.private }}
+        uses: hacs/action@1ebf01c408f29afcb6406bd431bc98fd8cbb15aa
         with:
           category: integration
