@@ -1,7 +1,6 @@
 {
   "domain": "houseparty",
   "name": "HouseParty",
-  "categories": ["alarm_control_panel"],
   "codeowners": ["@Foulmerchant"],
   "config_flow": true,
   "dependencies": [],
